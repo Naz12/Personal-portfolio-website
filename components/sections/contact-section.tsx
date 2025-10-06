@@ -111,7 +111,7 @@ export function ContactSection() {
                     </div>
                     <div>
                       <p className="font-medium">Phone</p>
-                      <p className="text-muted-foreground">+251 9XX XXX XXX</p>
+                      <p className="text-muted-foreground">{personalInfo.phone}</p>
                     </div>
                   </div>
                 </CardContent>

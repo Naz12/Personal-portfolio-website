@@ -11,6 +11,11 @@ export const metadata: Metadata = {
   description: "Computer Science & Engineering Graduate | Full-Stack Developer | Next.js, React, Node.js Expert",
   keywords: ["portfolio", "developer", "nextjs", "react", "nodejs", "typescript"],
   authors: [{ name: "Nazrawi Solomon Abera" }],
+  icons: {
+    icon: "/icon.svg",
+    shortcut: "/icon.svg",
+    apple: "/icon.svg",
+  },
   openGraph: {
     title: "Nazrawi Solomon Abera - Portfolio",
     description: "Computer Science & Engineering Graduate | Full-Stack Developer",

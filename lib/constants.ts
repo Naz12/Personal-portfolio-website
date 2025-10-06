@@ -1,10 +1,11 @@
 export const personalInfo = {
   name: "Nazrawi Solomon Abera",
   title: "Computer Science & Engineering Graduate",
-  email: "nazrawi@example.com",
+  email: "snazrawi@gmail.com",
+  phone: "+251911852563",
   location: "Addis Ababa, Ethiopia",
-  linkedin: "https://linkedin.com/in/nazrawi-solomon",
-  github: "https://github.com/nazrawi-solomon",
+  linkedin: "https://www.linkedin.com/in/nazrawi-solomon/",
+  github: "https://github.com/naz12",
   resume: "/resume.pdf"
 }
 
@@ -23,6 +24,11 @@ export const skills = {
     { name: "MongoDB", level: 75 },
     { name: "PostgreSQL", level: 70 }
   ],
+  mobile: [
+    { name: "Kotlin", level: 80 },
+    { name: "Android Development", level: 75 },
+    { name: "Mobile UI/UX", level: 70 }
+  ],
   tools: [
     { name: "Git", level: 90 },
     { name: "VS Code", level: 95 },
@@ -35,43 +41,43 @@ export const skills = {
 export const projects = [
   {
     id: 1,
-    title: "E-Commerce Platform",
-    description: "A full-stack e-commerce platform built with Next.js, featuring user authentication, payment integration, and admin dashboard.",
-    image: "/projects/ecommerce.jpg",
-    technologies: ["Next.js", "React", "Node.js", "MongoDB", "Stripe"],
-    liveUrl: "https://ecommerce-demo.com",
-    githubUrl: "https://github.com/nazrawi-solomon/ecommerce",
-    category: "Full Stack"
+    title: "Akili",
+    description: "An intelligent application showcasing modern web development practices with advanced features and user-friendly interface.",
+    image: "/projects/akili.jpg",
+    technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
+    liveUrl: "https://github.com/naz12/Akili",
+    githubUrl: "https://github.com/naz12/Akili",
+    category: "Web Application"
   },
   {
     id: 2,
-    title: "Task Management App",
-    description: "A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.",
-    image: "/projects/taskmanager.jpg",
-    technologies: ["React", "Express.js", "Socket.io", "PostgreSQL"],
-    liveUrl: "https://taskmanager-demo.com",
-    githubUrl: "https://github.com/nazrawi-solomon/taskmanager",
-    category: "Web App"
+    title: "Zoys",
+    description: "A dynamic web application demonstrating full-stack development capabilities with modern technologies and responsive design.",
+    image: "/projects/zoys.jpg",
+    technologies: ["React", "Node.js", "Express.js", "JavaScript"],
+    liveUrl: "https://github.com/naz12/Zoys",
+    githubUrl: "https://github.com/naz12/Zoys",
+    category: "Full Stack"
   },
   {
     id: 3,
-    title: "Weather Dashboard",
-    description: "A responsive weather dashboard with location-based forecasts, interactive maps, and detailed weather analytics.",
-    image: "/projects/weather.jpg",
-    technologies: ["Next.js", "TypeScript", "OpenWeather API", "Chart.js"],
-    liveUrl: "https://weather-demo.com",
-    githubUrl: "https://github.com/nazrawi-solomon/weather",
-    category: "Frontend"
+    title: "Streaming Service Platform",
+    description: "A comprehensive streaming service platform with web client and mobile app integration, featuring real-time streaming capabilities.",
+    image: "/projects/streaming.jpg",
+    technologies: ["Next.js", "TypeScript", "Kotlin", "Android"],
+    liveUrl: "https://github.com/naz12/Streaming-Service-Project",
+    githubUrl: "https://github.com/naz12/Streaming-Service-Project",
+    category: "Full Stack"
   },
   {
     id: 4,
-    title: "Blog Platform",
-    description: "A modern blog platform with markdown support, SEO optimization, and content management system.",
-    image: "/projects/blog.jpg",
-    technologies: ["Next.js", "MDX", "Tailwind CSS", "Vercel"],
-    liveUrl: "https://blog-demo.com",
-    githubUrl: "https://github.com/nazrawi-solomon/blog",
-    category: "Frontend"
+    title: "PrimeAndroid",
+    description: "Android application for PrimeTube with modern UI/UX design and optimized performance for mobile streaming.",
+    image: "/projects/primeandroid.jpg",
+    technologies: ["Kotlin", "Android", "Mobile Development"],
+    liveUrl: "https://github.com/naz12/PrimeAndroid",
+    githubUrl: "https://github.com/naz12/PrimeAndroid",
+    category: "Mobile Development"
   }
 ]
 
@@ -102,9 +108,9 @@ export const experience = [
 
 export const education = {
   degree: "Bachelor of Science in Computer Science & Engineering",
-  university: "Addis Ababa University",
-  period: "2019 - 2023",
-  gpa: "3.8/4.0",
+  university: "Adama Science and Technology University",
+  period: "2015 - 2021",
+  gpa: "3.18/4.0",
   relevantCourses: [
     "Data Structures and Algorithms",
     "Software Engineering",
