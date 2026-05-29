@@ -6,7 +6,8 @@ export const personalInfo = {
   location: "Addis Ababa, Ethiopia",
   linkedin: "https://www.linkedin.com/in/nazrawi-solomon/",
   github: "https://github.com/naz12",
-  resume: "/resume.pdf"
+  resume: "/resume.pdf",
+  profileImage: "/profile.JPG",
 }
 
 export const skills = {
@@ -38,14 +39,24 @@ export const skills = {
   ]
 }
 
-export const projects = [
+export interface Project {
+  id: number
+  title: string
+  description: string
+  image: string
+  technologies: string[]
+  githubUrl: string
+  demoUrl?: string
+  category: string
+}
+
+export const projects: Project[] = [
   {
     id: 1,
     title: "Akili",
     description: "An intelligent application showcasing modern web development practices with advanced features and user-friendly interface.",
     image: "/projects/akili.jpg",
     technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
-    liveUrl: "https://github.com/naz12/Akili",
     githubUrl: "https://github.com/naz12/Akili",
     category: "Web Application"
   },
@@ -55,7 +66,6 @@ export const projects = [
     description: "A dynamic web application demonstrating full-stack development capabilities with modern technologies and responsive design.",
     image: "/projects/zoys.jpg",
     technologies: ["React", "Node.js", "Express.js", "JavaScript"],
-    liveUrl: "https://github.com/naz12/Zoys",
     githubUrl: "https://github.com/naz12/Zoys",
     category: "Full Stack"
   },
@@ -65,7 +75,6 @@ export const projects = [
     description: "A comprehensive streaming service platform with web client and mobile app integration, featuring real-time streaming capabilities.",
     image: "/projects/streaming.jpg",
     technologies: ["Next.js", "TypeScript", "Kotlin", "Android"],
-    liveUrl: "https://github.com/naz12/Streaming-Service-Project",
     githubUrl: "https://github.com/naz12/Streaming-Service-Project",
     category: "Full Stack"
   },
@@ -75,7 +84,6 @@ export const projects = [
     description: "Android application for PrimeTube with modern UI/UX design and optimized performance for mobile streaming.",
     image: "/projects/primeandroid.jpg",
     technologies: ["Kotlin", "Android", "Mobile Development"],
-    liveUrl: "https://github.com/naz12/PrimeAndroid",
     githubUrl: "https://github.com/naz12/PrimeAndroid",
     category: "Mobile Development"
   }

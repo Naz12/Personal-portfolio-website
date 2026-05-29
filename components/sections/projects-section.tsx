@@ -2,13 +2,12 @@
 
 import * as React from "react"
 import { motion } from "framer-motion"
-import { ExternalLink, Github, Calendar } from "lucide-react"
-import Image from "next/image"
+import { ExternalLink, Github } from "lucide-react"
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { projects } from "@/lib/constants"
+import { personalInfo, projects } from "@/lib/constants"
 
 export function ProjectsSection() {
   const containerVariants = {
@@ -48,7 +47,7 @@ export function ProjectsSection() {
 
           {/* Projects Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
-            {projects.map((project, index) => (
+            {projects.map((project) => (
               <motion.div
                 key={project.id}
                 variants={itemVariants}
@@ -89,21 +88,39 @@ export function ProjectsSection() {
 
                     {/* Project Links */}
                     <div className="flex gap-2 pt-2">
-                      <Button
-                        size="sm"
-                        className="flex-1"
-                        asChild
-                      >
-                        <a
-                          href={project.liveUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-2"
+                      {project.demoUrl ? (
+                        <Button
+                          size="sm"
+                          className="flex-1"
+                          asChild
                         >
-                          <ExternalLink className="h-4 w-4" />
-                          Live Demo
-                        </a>
-                      </Button>
+                          <a
+                            href={project.demoUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2"
+                          >
+                            <ExternalLink className="h-4 w-4" />
+                            Live Demo
+                          </a>
+                        </Button>
+                      ) : (
+                        <Button
+                          size="sm"
+                          className="flex-1"
+                          asChild
+                        >
+                          <a
+                            href={project.githubUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2"
+                          >
+                            <ExternalLink className="h-4 w-4" />
+                            View Project
+                          </a>
+                        </Button>
+                      )}
                       <Button
                         variant="outline"
                         size="sm"
@@ -129,8 +146,14 @@ export function ProjectsSection() {
 
           {/* View More Button */}
           <motion.div variants={itemVariants} className="text-center mt-12">
-            <Button size="lg" variant="outline">
-              View All Projects
+            <Button size="lg" variant="outline" asChild>
+              <a
+                href={personalInfo.github}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                View All Projects
+              </a>
             </Button>
           </motion.div>
         </motion.div>

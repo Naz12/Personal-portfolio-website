@@ -2,7 +2,6 @@
 
 import * as React from "react"
 import Link from "next/link"
-import { usePathname } from "next/navigation"
 import { Menu, X } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
@@ -11,13 +10,13 @@ import { ThemeToggle } from "@/components/theme-toggle"
 const navigation = [
   { name: "Home", href: "#home" },
   { name: "About", href: "#about" },
+  { name: "Experience", href: "#experience" },
   { name: "Projects", href: "#projects" },
   { name: "Contact", href: "#contact" },
 ]
 
 export function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false)
-  const pathname = usePathname()
 
   return (
     <nav className="fixed top-0 w-full bg-background/80 backdrop-blur-md border-b border-border z-50">

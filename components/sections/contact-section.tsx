@@ -2,40 +2,56 @@
 
 import * as React from "react"
 import { motion } from "framer-motion"
-import { Mail, Phone, MapPin, Github, Linkedin, Send } from "lucide-react"
+import { Mail, Phone, MapPin, Github, Linkedin, Send, CheckCircle2, AlertCircle } from "lucide-react"
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { personalInfo } from "@/lib/constants"
+import { submitContactForm, type ContactFormData } from "@/lib/contact"
+
+const initialFormData: ContactFormData = {
+  name: "",
+  email: "",
+  subject: "",
+  message: "",
+}
 
 export function ContactSection() {
-  const [formData, setFormData] = React.useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: ""
-  })
-
+  const [formData, setFormData] = React.useState<ContactFormData>(initialFormData)
   const [isSubmitting, setIsSubmitting] = React.useState(false)
+  const [feedback, setFeedback] = React.useState<{
+    type: "success" | "error"
+    message: string
+  } | null>(null)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-    
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000))
-    
-    alert("Thank you for your message! I'll get back to you soon.")
-    setFormData({ name: "", email: "", subject: "", message: "" })
-    setIsSubmitting(false)
+    setFeedback(null)
+
+    try {
+      const result = await submitContactForm(formData)
+      setFeedback({
+        type: "success",
+        message: result.message ?? "Thank you for your message! I'll get back to you soon.",
+      })
+      setFormData(initialFormData)
+    } catch (error) {
+      setFeedback({
+        type: "error",
+        message: error instanceof Error ? error.message : "Failed to send message. Please try again.",
+      })
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     }))
   }
 
@@ -70,7 +86,7 @@ export function ContactSection() {
               Get In <span className="gradient-text">Touch</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Let's discuss your next project or just say hello
+              Let&apos;s discuss your next project or just say hello
             </p>
           </motion.div>
 
@@ -136,6 +152,7 @@ export function ContactSection() {
                         href={personalInfo.github}
                         target="_blank"
                         rel="noopener noreferrer"
+                        aria-label="GitHub profile"
                       >
                         <Github className="h-5 w-5" />
                       </a>
@@ -149,6 +166,7 @@ export function ContactSection() {
                         href={personalInfo.linkedin}
                         target="_blank"
                         rel="noopener noreferrer"
+                        aria-label="LinkedIn profile"
                       >
                         <Linkedin className="h-5 w-5" />
                       </a>
@@ -158,7 +176,10 @@ export function ContactSection() {
                       size="icon"
                       asChild
                     >
-                      <a href={`mailto:${personalInfo.email}`}>
+                      <a
+                        href={`mailto:${personalInfo.email}`}
+                        aria-label="Send email"
+                      >
                         <Mail className="h-5 w-5" />
                       </a>
                     </Button>
@@ -173,11 +194,29 @@ export function ContactSection() {
                 <CardHeader>
                   <CardTitle>Send Message</CardTitle>
                   <CardDescription>
-                    I'll get back to you as soon as possible
+                    I&apos;ll get back to you as soon as possible
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <form onSubmit={handleSubmit} className="space-y-6">
+                    {feedback && (
+                      <div
+                        role="alert"
+                        className={`flex items-start gap-3 rounded-lg border p-4 text-sm ${
+                          feedback.type === "success"
+                            ? "border-green-200 bg-green-50 text-green-800 dark:border-green-900 dark:bg-green-950 dark:text-green-200"
+                            : "border-red-200 bg-red-50 text-red-800 dark:border-red-900 dark:bg-red-950 dark:text-red-200"
+                        }`}
+                      >
+                        {feedback.type === "success" ? (
+                          <CheckCircle2 className="h-5 w-5 shrink-0 mt-0.5" />
+                        ) : (
+                          <AlertCircle className="h-5 w-5 shrink-0 mt-0.5" />
+                        )}
+                        <p>{feedback.message}</p>
+                      </div>
+                    )}
+
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
                         <label htmlFor="name" className="block text-sm font-medium mb-2">
@@ -234,6 +273,7 @@ export function ContactSection() {
                         placeholder="Tell me about your project..."
                         rows={6}
                         required
+                        minLength={10}
                       />
                     </div>
 

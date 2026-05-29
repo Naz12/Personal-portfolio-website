@@ -10,6 +10,10 @@ import { Button } from "@/components/ui/button"
 import { skills, education, personalInfo } from "@/lib/constants"
 
 export function AboutSection() {
+  const scrollToExperience = () => {
+    document.getElementById("experience")?.scrollIntoView({ behavior: "smooth" })
+  }
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -87,11 +91,13 @@ export function AboutSection() {
               </Card>
 
               <div className="flex gap-4">
-                <Button className="flex-1">
-                  <Download className="h-4 w-4 mr-2" />
-                  Download Resume
+                <Button className="flex-1" asChild>
+                  <a href={personalInfo.resume} download>
+                    <Download className="h-4 w-4 mr-2" />
+                    Download Resume
+                  </a>
                 </Button>
-                <Button variant="outline" className="flex-1">
+                <Button variant="outline" className="flex-1" onClick={scrollToExperience}>
                   View Experience
                 </Button>
               </div>
@@ -141,11 +147,11 @@ export function AboutSection() {
             <Card>
               <CardContent className="pt-6">
                 <blockquote className="text-lg italic text-center max-w-4xl mx-auto">
-                  "I believe in the power of technology to solve real-world problems. 
-                  As a Computer Science & Engineering graduate, I'm passionate about 
-                  creating innovative solutions that make a difference. I specialize in 
-                  full-stack development with modern technologies like Next.js, React, 
-                  and Node.js, always striving to write clean, efficient, and maintainable code."
+                  &ldquo;I believe in the power of technology to solve real-world problems.
+                  As a Computer Science &amp; Engineering graduate, I&apos;m passionate about
+                  creating innovative solutions that make a difference. I specialize in
+                  full-stack development with modern technologies like Next.js, React,
+                  and Node.js, always striving to write clean, efficient, and maintainable code.&rdquo;
                 </blockquote>
               </CardContent>
             </Card>

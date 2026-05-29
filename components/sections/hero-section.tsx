@@ -3,11 +3,16 @@
 import * as React from "react"
 import { motion } from "framer-motion"
 import { ArrowDown, Github, Linkedin, Mail } from "lucide-react"
+import Image from "next/image"
 
 import { Button } from "@/components/ui/button"
 import { personalInfo } from "@/lib/constants"
 
 export function HeroSection() {
+  const [imageError, setImageError] = React.useState(false)
+  const initials = personalInfo.name.split(" ").map((n) => n[0]).join("")
+  const showProfileImage = personalInfo.profileImage && !imageError
+
   const scrollToNext = () => {
     const aboutSection = document.getElementById("about")
     aboutSection?.scrollIntoView({ behavior: "smooth" })
@@ -23,15 +28,29 @@ export function HeroSection() {
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-4xl mx-auto">
-          {/* Profile Image Placeholder */}
+          {/* Profile Image */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="mb-8"
           >
-            <div className="w-32 h-32 mx-auto rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-4xl font-bold text-white mb-6">
-              {personalInfo.name.split(' ').map(n => n[0]).join('')}
+            <div className="w-32 h-32 mx-auto rounded-full mb-6 overflow-hidden ring-4 ring-primary/20 shadow-lg">
+              {showProfileImage ? (
+                <Image
+                  src={personalInfo.profileImage}
+                  alt={personalInfo.name}
+                  width={128}
+                  height={128}
+                  className="w-full h-full object-cover"
+                  onError={() => setImageError(true)}
+                  priority
+                />
+              ) : (
+                <div className="w-full h-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-4xl font-bold text-white">
+                  {initials}
+                </div>
+              )}
             </div>
           </motion.div>
 
@@ -83,8 +102,11 @@ export function HeroSection() {
               variant="outline"
               size="lg"
               className="w-full sm:w-auto"
+              asChild
             >
-              Download Resume
+              <a href={personalInfo.resume} download>
+                Download Resume
+              </a>
             </Button>
           </motion.div>
 
@@ -99,6 +121,7 @@ export function HeroSection() {
               href={personalInfo.github}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="GitHub profile"
               className="p-3 rounded-full bg-secondary hover:bg-accent transition-colors duration-200"
             >
               <Github className="h-6 w-6" />
@@ -107,12 +130,14 @@ export function HeroSection() {
               href={personalInfo.linkedin}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="LinkedIn profile"
               className="p-3 rounded-full bg-secondary hover:bg-accent transition-colors duration-200"
             >
               <Linkedin className="h-6 w-6" />
             </a>
             <a
               href={`mailto:${personalInfo.email}`}
+              aria-label="Send email"
               className="p-3 rounded-full bg-secondary hover:bg-accent transition-colors duration-200"
             >
               <Mail className="h-6 w-6" />

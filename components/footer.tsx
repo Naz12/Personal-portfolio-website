@@ -18,6 +18,7 @@ export function Footer() {
               href={personalInfo.github}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="GitHub profile"
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
               <Github className="h-5 w-5" />
@@ -26,12 +27,14 @@ export function Footer() {
               href={personalInfo.linkedin}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="LinkedIn profile"
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
               <Linkedin className="h-5 w-5" />
             </a>
             <a
               href={`mailto:${personalInfo.email}`}
+              aria-label="Send email"
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
               <Mail className="h-5 w-5" />
@@ -40,7 +43,7 @@ export function Footer() {
         </div>
 
         <div className="mt-8 pt-8 border-t border-border text-center text-sm text-muted-foreground">
-          <p>&copy; 2024 Nazrawi Solomon Abera. All rights reserved.</p>
+          <p>&copy; 2026 Nazrawi Solomon Abera. All rights reserved.</p>
         </div>
       </div>
     </footer>
