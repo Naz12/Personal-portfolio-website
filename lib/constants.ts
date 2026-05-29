@@ -91,25 +91,27 @@ export const projects: Project[] = [
 
 export const experience = [
   {
-    title: "Frontend Developer Intern",
-    company: "Tech Solutions Inc.",
-    period: "2023 - Present",
-    description: "Developed responsive web applications using React and Next.js. Collaborated with design team to implement UI/UX designs.",
+    title: "Senior Full-Stack Developer",
+    company: "ET Systems",
+    period: "January 2024 - January 2026",
+    description:
+      "Senior developer on diverse client projects, responsible for end-to-end delivery from frontend and backend development through deployment.",
     achievements: [
-      "Improved application performance by 40%",
-      "Implemented automated testing pipeline",
-      "Mentored junior developers"
+      "Led full-stack development across multiple client projects",
+      "Built and shipped applications with React, Next.js, Node.js, PHP, and Laravel",
+      "Owned deployment and production delivery for client solutions"
     ]
   },
   {
-    title: "Freelance Web Developer",
-    company: "Self-Employed",
-    period: "2022 - 2023",
-    description: "Built custom web solutions for small businesses including e-commerce sites, portfolios, and business websites.",
+    title: "Full Stack Developer",
+    company: "Guzo",
+    period: "April 2021 - November 2023",
+    description:
+      "Full-stack developer with a strong frontend focus, building user-facing applications with React, UI/UX design principles, and Node.js backends.",
     achievements: [
-      "Delivered 15+ successful projects",
-      "Achieved 100% client satisfaction rate",
-      "Specialized in React and Node.js development"
+      "Developed responsive web applications with React",
+      "Collaborated on UI/UX design and implementation",
+      "Built and maintained Node.js API integrations and backend services"
     ]
   }
 ]

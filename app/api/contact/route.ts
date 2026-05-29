@@ -57,6 +57,14 @@ export async function POST(request: Request) {
       )
     }
 
+    if (!EMAIL_REGEX.test(toEmail)) {
+      console.error("Invalid CONTACT_TO_EMAIL:", toEmail)
+      return NextResponse.json(
+        { success: false, error: "Contact form is not configured. Please try again later." },
+        { status: 503 }
+      )
+    }
+
     const resend = new Resend(apiKey)
 
     const { error } = await resend.emails.send({
