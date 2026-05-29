@@ -5,6 +5,25 @@ import type { ContactFormData } from "@/lib/contact"
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 const MIN_MESSAGE_LENGTH = 10
+const DEFAULT_FROM_NAME = "Nazrawi Portfolio"
+
+function trimEnv(value: string | undefined): string | undefined {
+  return value?.trim().replace(/^["']|["']$/g, "")
+}
+
+function normalizeFromEmail(from: string): string {
+  const trimmed = from.trim().replace(/^["']|["']$/g, "")
+
+  if (trimmed.includes("<") && trimmed.includes(">")) {
+    return trimmed
+  }
+
+  if (EMAIL_REGEX.test(trimmed)) {
+    return `${DEFAULT_FROM_NAME} <${trimmed}>`
+  }
+
+  return trimmed
+}
 
 function validateContactForm(data: ContactFormData): string | null {
   if (!data.name?.trim()) return "Name is required."
@@ -27,9 +46,9 @@ export async function POST(request: Request) {
       return NextResponse.json({ success: false, error: validationError }, { status: 400 })
     }
 
-    const apiKey = process.env.RESEND_API_KEY
-    const toEmail = process.env.CONTACT_TO_EMAIL
-    const fromEmail = process.env.CONTACT_FROM_EMAIL
+    const apiKey = trimEnv(process.env.RESEND_API_KEY)
+    const toEmail = trimEnv(process.env.CONTACT_TO_EMAIL)
+    const fromEmail = trimEnv(process.env.CONTACT_FROM_EMAIL)
 
     if (!apiKey || !toEmail || !fromEmail) {
       return NextResponse.json(
@@ -41,21 +60,21 @@ export async function POST(request: Request) {
     const resend = new Resend(apiKey)
 
     const { error } = await resend.emails.send({
-      from: fromEmail,
-      to: toEmail,
-      replyTo: body.email,
-      subject: `[Portfolio] ${body.subject}`,
+      from: normalizeFromEmail(fromEmail),
+      to: [toEmail],
+      replyTo: body.email.trim(),
+      subject: `[Portfolio] ${body.subject.trim()}`,
       text: [
-        `Name: ${body.name}`,
-        `Email: ${body.email}`,
-        `Subject: ${body.subject}`,
+        `Name: ${body.name.trim()}`,
+        `Email: ${body.email.trim()}`,
+        `Subject: ${body.subject.trim()}`,
         "",
-        body.message,
+        body.message.trim(),
       ].join("\n"),
     })
 
     if (error) {
-      console.error("Resend error:", error)
+      console.error("Resend error:", JSON.stringify(error))
       return NextResponse.json(
         { success: false, error: "Failed to send message. Please try again later." },
         { status: 500 }
