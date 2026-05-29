@@ -42,7 +42,7 @@ export function HeroSection() {
                   alt={personalInfo.name}
                   width={128}
                   height={128}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-top"
                   onError={() => setImageError(true)}
                   priority
                 />
