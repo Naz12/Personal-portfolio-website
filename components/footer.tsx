@@ -42,7 +42,12 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-8 pt-8 border-t border-border text-center text-sm text-muted-foreground">
+        <div className="mt-8 pt-8 border-t border-border text-center text-sm text-muted-foreground space-y-2">
+          <p>
+            <a href="/pomodoro" className="hover:text-foreground transition-colors">
+              Focus
+            </a>
+          </p>
           <p>&copy; 2026 Nazrawi Solomon Abera. All rights reserved.</p>
         </div>
       </div>
